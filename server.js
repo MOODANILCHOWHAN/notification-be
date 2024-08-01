@@ -1,18 +1,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import admin from 'firebase-admin';
 import notificationRoutes from './routes/notificationRoutes.js';
 import dotenv from 'dotenv';
-import serviceAccount from './serviceAccountKey.json' assert { type: "json" };
+import './firebase-admin.js'; // Ensure Firebase Admin is initialized
 
-// Initialize dotenv
 dotenv.config();
-
-// Initialize Firebase Admin SDK
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
 
 const app = express();
 app.use(cors());
