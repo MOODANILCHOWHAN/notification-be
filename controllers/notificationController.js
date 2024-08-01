@@ -1,6 +1,3 @@
-import admin from 'firebase-admin';
-import Notification from '../models/notificationModel.js';
-
 export const sendNotification = async (req, res) => {
   const { token, title, body } = req.body;
 
@@ -20,7 +17,7 @@ export const sendNotification = async (req, res) => {
 
     res.status(200).send('Notification sent and saved successfully');
   } catch (error) {
-    console.error('Error sending message:', error);
+    console.error('Error sending message:', error.response ? error.response.data : error.message);
     res.status(500).send('Error sending notification');
   }
 };
